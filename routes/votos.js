@@ -63,5 +63,17 @@ router.delete('/:id', async(req, res)=>{
 
 })
 
+router.put('/votomas/:id', async(req,res) =>{
+    try{
+        const miVoto = await Voto.findById(req.params.id);
+        miVoto.likes = miVoto.likes+1;
+        const v1 = await miVoto.save();
+        res.json(v1);
+    }catch{
+        res.send("Error " + err);//Error en la contante
+    }
+    
+})
+
 
 module.exports = router;
